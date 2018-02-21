@@ -1,3 +1,5 @@
+/* global isNaN, isFinite */
+
 const isNumber = n => (!isNaN(parseFloat(n)) && isFinite(n));
 
 // eslint-disable-next-line max-len
