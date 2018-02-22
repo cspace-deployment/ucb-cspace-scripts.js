@@ -9,7 +9,7 @@ Installation requires git, [Node.js](https://nodejs.org/) (version 8.9 or above)
 Use the following commands to perform the installation.
 
 ```
-$ git clone https://github.com/ray-lee/ucb-cspace-scripts.js.git
+$ git clone https://github.com/cspace-deployment/ucb-cspace-scripts.js.git
 $ cd ucb-cspace-scripts.js
 $ npm install
 ```
