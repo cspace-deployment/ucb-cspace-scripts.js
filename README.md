@@ -41,3 +41,7 @@ Alternatively, the `babel-node` program from the [Babel CLI](https://babeljs.io/
 ```
 $ npx babel-node src/scripts/pahma/batchCreateObject.js
 ```
+
+## Documentation
+
+The available scripts are described in the [script documentation](./docs/README.md).
