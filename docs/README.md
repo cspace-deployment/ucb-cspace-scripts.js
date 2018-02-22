@@ -6,4 +6,4 @@ The following scripts are provided by this package. Compiled scripts are located
 
 Generic scripts may be used on any UC Berkeley CollectionSpace tenant. These scripts are located in the `generic` subdirectory.
 
-- [scalarDates.js](./scalarDates.js.md)
+- [scalarDates.js](./scalarDates.js.md) - Calculate scalar date values from structured date parts, with the algorithm used by the CollectionSpace UI.
