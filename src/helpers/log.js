@@ -2,7 +2,7 @@
 
 import util from 'util';
 
-export default function log(message, object) {
+export default (message, object) => {
   console.log(message);
 
   if (typeof object !== 'undefined') {
@@ -13,5 +13,4 @@ export default function log(message, object) {
   }
 
   return object;
-}
-
+};
