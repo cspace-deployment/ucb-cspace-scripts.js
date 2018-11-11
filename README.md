@@ -1,6 +1,6 @@
 # ucb-cspace-scripts
 
-This package contains JavaScript programs for performing operations such as batch updates on UC Berkeley CollectionSpace installations.
+This package contains JavaScript programs for performing operations such as bulk updates on UC Berkeley CollectionSpace installations.
 
 ## Installation
 

@@ -2,7 +2,7 @@ import FormData from 'form-data';
 import get from 'lodash/get';
 import getContentDispositionFilename from './getContentDispositionFilename';
 
-export default (csid, source, dest) =>
+export default (csid, source, dest) => (
   source.read(`blobs/${csid}/content`, { responseType: 'stream' })
     .then((response) => {
       const form = new FormData();
@@ -20,4 +20,5 @@ export default (csid, source, dest) =>
       const location = get(response, ['headers', 'location']);
 
       return (location ? location.substring(location.lastIndexOf('/') + 1) : null);
-    });
+    })
+);

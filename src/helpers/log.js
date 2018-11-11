@@ -1,15 +1,12 @@
 /* eslint-disable no-console */
 
-import util from 'util';
+import formatObject from './formatObject';
 
 export default (message, object) => {
-  console.log(message);
+  console.error(message);
 
   if (typeof object !== 'undefined') {
-    console.log(util.inspect(object, {
-      depth: 6,
-      colors: true,
-    }));
+    console.error(formatObject(object));
   }
 
   return object;
