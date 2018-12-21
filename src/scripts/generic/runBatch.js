@@ -34,13 +34,20 @@ forEach(cspace, service, params, (item) => {
 
   return cspace.create(`batch/${batchCsid}`, config)
     .then((response) => {
-      const numAffected = parseInt(get(response, ['data', 'ns2:invocationResults', 'numAffected']), 10);
+      let numAffected = parseInt(get(response, ['data', 'ns2:invocationResults', 'numAffected']), 10);
+
+      if (Number.isNaN(numAffected)) {
+        numAffected = 0;
+      }
 
       if (numAffected > 0) {
         log(`updated ${item.csid}`);
       }
     })
     .catch((error) => {
+      log(`error on csid: ${item.csid}`);
       log(error);
+
+      throw error;
     });
 });

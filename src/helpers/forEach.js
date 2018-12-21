@@ -17,18 +17,22 @@ const processPage = (cspace, service, params, callback) => cspace.read(service, 
       itemsInPage = 0;
     }
 
-    if (itemsInPage > 0) {
+    let processPagePromise;
+
+    if (itemsInPage === 0) {
+      processPagePromise = Promise.resolve();
+    } else {
       let items = get(result, ['data', 'ns2:abstract-common-list', 'list-item']);
 
       if (!Array.isArray(items)) {
         items = [items];
       }
 
-      items.reduce((promise, item) => promise
-        .then(Promise.resolve(callback(item))), Promise.resolve());
+      processPagePromise = items.reduce((promise, item) => promise
+        .then(() => Promise.resolve(callback(item))), Promise.resolve());
     }
 
-    return itemsInPage;
+    return processPagePromise.then(() => itemsInPage);
   });
 
 export default async (cspace, service, params, callback) => {
