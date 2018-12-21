@@ -11,7 +11,11 @@ const pgSz = (pageSize && pageSize > 0) ? pageSize : 100;
 
 const processPage = (cspace, service, params, callback) => cspace.read(service, { params })
   .then((result) => {
-    const itemsInPage = parseInt(get(result, ['data', 'ns2:abstract-common-list', 'itemsInPage']), 10);
+    let itemsInPage = parseInt(get(result, ['data', 'ns2:abstract-common-list', 'itemsInPage']), 10);
+
+    if (Number.isNaN(itemsInPage)) {
+      itemsInPage = 0;
+    }
 
     if (itemsInPage > 0) {
       let items = get(result, ['data', 'ns2:abstract-common-list', 'list-item']);
