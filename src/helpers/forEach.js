@@ -3,11 +3,10 @@ import get from 'lodash/get';
 import log from './log';
 
 const {
-  pageSize,
-  startPage,
+  pageSize = 100,
+  startPage = 0,
+  endPage = Number.MAX_SAFE_INTEGER,
 } = yargs.argv;
-
-const pgSz = (pageSize && pageSize > 0) ? pageSize : 100;
 
 const processPage = (cspace, service, params, callback) => cspace.read(service, { params })
   .then((result) => {
@@ -36,17 +35,17 @@ const processPage = (cspace, service, params, callback) => cspace.read(service, 
   });
 
 export default async (cspace, service, params, callback) => {
-  let pgNum = startPage || 0;
+  let pgNum = startPage;
   let itemsInPage;
 
   do {
     const pageParams = Object.assign({}, params, {
       pgNum,
-      pgSz,
-      sortBy: 'collectionspace_core:createdAt',
+      pgSz: pageSize,
+      sortBy: 'collectionspace_core:createdAt, ecm:name',
     });
 
-    log(`Processing page ${pgNum} with size ${pgSz}`);
+    log(`Processing page ${pgNum} with size ${pageSize}`);
 
     try {
       itemsInPage = await processPage(cspace, service, pageParams, callback);
@@ -57,7 +56,7 @@ export default async (cspace, service, params, callback) => {
     }
 
     pgNum += 1;
-  } while (itemsInPage === pgSz);
+  } while (itemsInPage === pageSize && pgNum <= endPage);
 
   log('Done');
 };
