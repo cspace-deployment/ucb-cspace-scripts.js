@@ -46,7 +46,7 @@ export default async (cspace, service, params, callback) => {
       sortBy: 'collectionspace_core:createdAt',
     });
 
-    log(`processing page ${pgNum} with size ${pgSz}`);
+    log(`Processing page ${pgNum} with size ${pgSz}`);
 
     try {
       itemsInPage = await processPage(cspace, service, pageParams, callback);
@@ -58,4 +58,6 @@ export default async (cspace, service, params, callback) => {
 
     pgNum += 1;
   } while (itemsInPage === pgSz);
+
+  log('Done');
 };

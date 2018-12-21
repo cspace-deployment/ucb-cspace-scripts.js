@@ -41,11 +41,11 @@ forEach(cspace, service, params, (item) => {
       }
 
       if (numAffected > 0) {
-        log(`updated ${item.csid}`);
+        log(`Updated: ${item.csid}`);
       }
     })
     .catch((error) => {
-      log(`error on csid: ${item.csid}`);
+      log(`Error: ${item.csid}`);
       log(error);
 
       throw error;
